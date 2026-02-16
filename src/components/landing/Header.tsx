@@ -17,11 +17,21 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
-        <a href="#inicio" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-            <span className="text-sm font-bold text-primary-foreground">T</span>
-          </div>
-          <span className="hidden text-sm font-semibold text-foreground sm:inline lg:text-base">
+        <a href="#inicio" className="flex items-center">
+          <img
+            src="/logo-trust-automation.png"
+            alt="Trust Automation And Solutions Technology"
+            className="h-8 w-auto lg:h-10"
+            width={160}
+            height={40}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              if (e.currentTarget.nextElementSibling) {
+                (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'inline';
+              }
+            }}
+          />
+          <span className="hidden text-sm font-semibold text-foreground">
             Trust Automation
           </span>
         </a>

@@ -12,7 +12,17 @@ const Footer = () => {
     <footer className="border-t border-border/30 py-12">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex flex-col items-center gap-6 text-center">
-          <div>
+          <div className="flex flex-col items-center gap-3">
+            <img
+              src="/logo-trust-automation.png"
+              alt="Trust Automation And Solutions Technology"
+              className="h-[50px] w-auto"
+              width={200}
+              height={50}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
             <h3 className="mb-1 text-lg font-bold text-foreground">
               Trust Automation And Solutions Technology
             </h3>
