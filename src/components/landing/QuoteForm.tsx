@@ -20,12 +20,15 @@ const QuoteForm = () => {
   const [needType, setNeedType] = useState("");
   const [deadline, setDeadline] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+
     const formData = new FormData(form);
     const name = (formData.get("name") as string)?.trim();
     const email = (formData.get("email") as string)?.trim();
+    const company = (formData.get("company") as string)?.trim();
+    const whatsapp = (formData.get("whatsapp") as string)?.trim();
     const idea = (formData.get("idea") as string)?.trim();
 
     if (!name || !email || !idea) {
@@ -43,8 +46,45 @@ const QuoteForm = () => {
       return;
     }
 
-    // In a real app this would POST to an API
-    setSubmitted(true);
+    const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+    if (!API_BASE) {
+      toast.error("Configuração ausente: VITE_API_BASE_URL.");
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${API_BASE}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          company: company || null,
+          whatsapp: whatsapp || null,
+          needType: needType || null,
+          deadline: deadline || null,
+          idea,
+          consent: true,
+          sourceUrl: window.location.href,
+          honey: null
+        }),
+      });
+
+      if (!resp.ok) {
+        const msg = await resp.text();
+        toast.error(msg || "Erro ao enviar solicitação.");
+        return;
+      }
+
+      setSubmitted(true);
+      form.reset();
+      setNeedType("");
+      setDeadline("");
+      setConsent(false);
+    } catch (err) {
+      toast.error("Falha de conexão. Tente novamente.");
+    }
   };
 
   if (submitted) {
