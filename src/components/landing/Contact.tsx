@@ -3,7 +3,7 @@ import { Mail, Phone, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
-  const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços da Trust Automation.")}`;
+  const whatsappUrl = `https://wa.me/5511993399158?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre os serviços da Trust Automation.")}`;
   const emailUrl = `mailto:contato@trustautomation.com?subject=${encodeURIComponent("Contato pelo site")}`;
 
   return (
@@ -37,7 +37,7 @@ const Contact = () => {
           <div className="flex flex-col items-center rounded-xl border border-border/40 bg-card-gradient p-6 text-center shadow-card">
             <Phone size={22} className="mb-3 text-primary" />
             <span className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">WhatsApp</span>
-            <span className="text-sm text-foreground">(11) 99999-9999</span>
+            <span className="text-sm text-foreground">(11) 99339-9158</span>
           </div>
           <div className="flex flex-col items-center rounded-xl border border-border/40 bg-card-gradient p-6 text-center shadow-card">
             <Clock size={22} className="mb-3 text-primary" />
