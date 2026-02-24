@@ -13,7 +13,7 @@ const HEALTH_URL =
 
 console.log(HEALTH_URL)
 
-async function pingHealth(timeoutMs = 8000) {
+async function pingHealth(timeoutMs = 120000) {
   const controller = new AbortController();
   const t = window.setTimeout(() => controller.abort(), timeoutMs);
 
